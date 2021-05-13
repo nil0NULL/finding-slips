@@ -1,0 +1,148 @@
+# Supporting Information
+
+## Compilation and Usage
+
+Files:
+
+- isparallel.cpp: The main program.
+- Parts.h & Parts.cpp : This file define the parts function and other related functions, including distance calculation functions. 
+- Atom.h & Atom.h : Defination of class Atom.
+- Point.h & Point.h : Defination of class Point. 
+- Options.h & Options.cpp : Defination of IsParallelOptions data type and the get_options function, which is used for providing the arguments main program isparallel.cpp.
+
+Compilation: 
+
+This program GNU C library getopt, and should compiled with C++ 11 option.
+
+``` bash
+cd src
+make isparallel
+```
+
+Usage:
+``` bash
+isparallel [-f] [input_file] [options]
+```
+
+Options:
+
+--vdw-dist, -V &lt;value&gt;
+    If the distance between the two atoms is value &#8491; shorter than the sum of van der Waals radius, the program will determine the atoms is too close.
+
+--vdw-scalar, -v &lt;value&gt;
+    If the distance between the two atoms is value times shorter than the sum of van der Waals radius, the program will determine the atoms is too close.
+
+--cov-dist, -C &lt;value&gt;
+    If the distance between the two atoms is not value &#8491; longer than the sum of covalent radius, the program will determine the atoms is too close.
+
+--cov-scalar, -c &lt;value&gt;
+    If the distance between the two atoms is value times longer than the sum of covalent radius, the program will determine the atoms is too close.
+
+--maxhkl, -m &lt;n&gt;
+    Specify the max crystal orientation index as n. The default is 3.
+
+--filename, -f &lt;filename&gt;
+    Specify the input file. The default is 'input.txt'.
+
+--output, -o &lt;output_file&gt;
+    Specify the output file. The default is input 'filename.out'.
+
+--details, -p
+    Print the processing details.
+
+--expand, -x
+    Make a 2x2x2 supercell.
+
+  The default distance criterion is "-V 1.00". If distance options are specified, the program will use disjunctive logic to judge, which means the atoms will be recognize as too-close atom-pair if any condition satisfied.
+
+Example:
+``` bash
+# ./isparallel TATBNZ.txt -m 2 -p
+filename:   TATNBZ.txt
+maxhkl:          2
+vdw dist:     1.00
+48 atoms had been read.
+Beginning
+checking orientation: <     0     0     1 >
+checking orientation: <     0     0    -1 >
+checking orientation: <     0     1     0 >
+crystal orientation : <     0     1     0 > found
+checking orientation: <     0     1     1 >
+...
+...
+...
+checking orientation: <     2     2    -1 >
+checking orientation: <     2    -2     1 >
+checking orientation: <     2    -2    -1 >
+checking plane      : (     0     0    -1 )
+crystal plane       : (     0     0    -1 ) found
+Finished
+Write detailed results to the output file.
+TATNBZ.txt has 1 shearing slip crystal plane(s).
+
+# ./isparallel -m 3 -f CYCHEX.txt
+CYCHEX.txt has 6 shearing slip crystal orientation(s).
+```
+
+## Input File Format
+
+In the input file, each of the line 1-3 includes three number, which represent the crystal axes. The forth line only include a integer number n, which show the number of atoms in the crystal cell. The following n lines represent the atoms' information. Each line include the atomic number, the element symbol, the fractional ordionations (containing 3 floating number), the atomic mass, the covalent radii, the van der Waals radii and the mol-id. The mol-id is an integer number represent the atom belonging to a certain molecule, and is optional.
+
+Example of graphite:
+```
+2.130    -1.230     0.000
+0.000     2.460     0.000
+0.000     0.000     6.800
+4
+6 C      0.00     0.00     0.25    12.01     0.75     1.70
+6 C      0.00     0.00     0.75    12.01     0.75     1.70
+6 C      0.33     0.67     0.25    12.01     0.75     1.70
+6 C     -0.33    -0.67     0.75    12.01     0.75     1.70
+```
+
+Example of FOX-7:
+```
+6.941     0.000    -0.067
+0.000     6.569     0.000
+0.000     0.000    11.315
+56
+6 C   -0.23230   0.16890   0.63691  12.011   0.75   1.70   1
+6 C   -0.31360   0.24070   0.52539  12.011   0.75   1.70   1
+7 N   -0.03490   0.14410   0.65814  14.007   0.71   1.55   1
+...
+...
+...
+1 H    0.42400   0.20100   0.94700   1.008   0.32   1.10   4
+1 H   -0.04700   0.20100   0.94600   1.008   0.32   1.10   4
+1 H   -0.08000   0.29500   1.05900   1.008   0.32   1.10   4
+```
+
+### Format Converting Script
+
+The scritpt format.pl can transform CMF (combined cif and mif) files to the intput file format needed. It need Materials Script of Materials Studio supporting.
+
+Usage：
+``` bash
+MatScriptRun.sh format [filename.cmf] | [dir]
+```
+
+If there no argument, the script will transform all cmf files in the current directory. Otherwise, it will transform the cmf files and all the cmf files in the directories as the intput arguments.
+
+## Notes
+
+If an atom's mol-id is assigned, we highly recommend all the atoms' mol-id should be assigned. The covalent radius and van der Waals radius data referenced from *CRC Handbook of Chemistry and Physics, 97th Ed. (2016-2017)*.
+
+## Copyright and Licenses 
+
+**Copyright(C) 2021 Xudong He**
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or at your option) any later version.
+
+Isparallel is distributed in the hope that it will be useful, WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+**Author: hxd_yi (Xudong He)**
+
+**E-mail: hxd_yi@163.com**
+
