@@ -1,4 +1,6 @@
-# Supporting Information
+# finding-slips
+
+A Program for Finding Slip Orientations of Organic Molecular Crystal
 
 ## Compilation and Usage
 
