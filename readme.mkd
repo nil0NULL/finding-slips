@@ -6,7 +6,7 @@ A Program for Finding Slip Orientations of Organic Molecular Crystal
 
 Files:
 
-- isparallel.cpp: The main program.
+- main.cpp: The main program.
 - Parts.h & Parts.cpp : This file define the parts function and other related functions, including distance calculation functions. 
 - Atom.h & Atom.h : Defination of class Atom.
 - Point.h & Point.h : Defination of class Point. 
