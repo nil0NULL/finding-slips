@@ -48,8 +48,8 @@ Part parts(const Cell& cif, function<double(const Point&)> fun, const IsParallel
 {
     int findmol(int k, vector<int>& mol);
     vector<vector<double>> dist(cif.natoms + 1, vector<double>(cif.natoms + 1, 0));
-    vector<int> mol(cif.natoms);
-    vector<int> root(cif.natoms);
+    vector<int> mol(cif.natoms + 1);
+    vector<int> root(cif.natoms + 1);
     if( options.flag_mol )
         transform(cif.atoms.begin(), cif.atoms.end(), mol.begin(), [](const Atom& x) -> int { return x.mol_id(); });
     else
