@@ -351,7 +351,7 @@ ofstream& output_details(ofstream& fout, xxx& x, Part& y, char type, const Cell&
 	     << setw(6) << fixed << setprecision(3) << y.cov_dist.value << endl;
     }
     if( options.flag_cov_scalar ) {
-	fout << " Minimum Covalent Contact Distance: "
+	fout << " Minimum Covalent Contact Scalar: "
 	     << cif.atoms[y.cov_scalar.atom_i].element_symbol()
 	     << " ... "
 	     << cif.atoms[y.cov_scalar.atom_j].element_symbol() << " "
