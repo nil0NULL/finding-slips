@@ -28,31 +28,31 @@ isparallel [-f] [input_file] [options]
 
 Options:
 
---vdw-dist, -V &lt;value&gt;
+--vdw-dist, -V \<value\> <br>
     If the distance between the two atoms is value &#8491; shorter than the sum of van der Waals radius, the program will determine the atoms is too close.
 
---vdw-scalar, -v &lt;value&gt;
+--vdw-scalar, -v \<value\> <br>
     If the distance between the two atoms is value times shorter than the sum of van der Waals radius, the program will determine the atoms is too close.
 
---cov-dist, -C &lt;value&gt;
+--cov-dist, -C \<value\> <br>
     If the distance between the two atoms is not value &#8491; longer than the sum of covalent radius, the program will determine the atoms is too close.
 
---cov-scalar, -c &lt;value&gt;
+--cov-scalar, -c \<value\> <br>
     If the distance between the two atoms is value times longer than the sum of covalent radius, the program will determine the atoms is too close.
 
---maxhkl, -m &lt;n&gt;
+--maxhkl, -m \<n\> <br>
     Specify the max crystal orientation index as n. The default is 3.
 
---filename, -f &lt;filename&gt;
+--filename, -f \<filename\> <br>
     Specify the input file. The default is 'input.txt'.
 
---output, -o &lt;output_file&gt;
+--output, -o \<output_file\> <br>
     Specify the output file. The default is input 'filename.out'.
 
---details, -p
+--details, -p <br>
     Print the processing details.
 
---expand, -x
+--expand, -x <br>
     Make a 2x2x2 supercell.
 
   The default distance criterion is "-V 1.00". If distance options are specified, the program will use disjunctive logic to judge, which means the atoms will be recognize as too-close atom-pair if any condition satisfied.
